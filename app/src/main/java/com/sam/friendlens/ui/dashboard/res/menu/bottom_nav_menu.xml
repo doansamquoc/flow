@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_home_page"
+        android:enabled="true"
+        android:icon="@drawable/house_off"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/action_search_page"
+        android:enabled="true"
+        android:icon="@drawable/search_1"
+        android:title="@string/search" />
+    <item
+        android:id="@+id/action_create_feed_page"
+        android:enabled="true"
+        android:icon="@drawable/add_1"
+        android:title="@string/_new" />
+    <item
+        android:id="@+id/action_activity_page"
+        android:enabled="true"
+        android:icon="@drawable/arrow_comparison"
+        android:title="@string/activity" />
+    <item
+        android:id="@+id/action_profile_page"
+        android:enabled="true"
+        android:icon="@drawable/user"
+        android:title="@string/profile" />
+</menu>

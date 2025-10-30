@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "443313506463",
+    "firebase_url": "https://gabby-911c6-default-rtdb.firebaseio.com",
+    "project_id": "gabby-911c6",
+    "storage_bucket": "gabby-911c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443313506463:android:a09275ea5ef7729c57baaa",
+        "android_client_info": {
+          "package_name": "com.sam.friendlens"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "443313506463-mtngg627ldcke2mshtng8onnu02e30ek.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sam.friendlens",
+            "certificate_hash": "a36f71c1f169bab4e3647f8ff15819a6b986af78"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7loSlcTEUcQ7BNYhIQfQ7Dm8e_jpoHkY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
