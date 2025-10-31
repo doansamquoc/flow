@@ -1,23 +1,17 @@
 package com.sam.friendlens.ui.dashboard.home;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.sam.friendlens.R;
 import com.sam.friendlens.data.model.Media;
 import com.sam.friendlens.data.model.Post;
 import com.sam.friendlens.data.model.PostDisplay;
@@ -55,13 +49,61 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new PostAdapter(getSamplePosts()));
 
-//        PagerSnapHelper snapHelper = new PagerSnapHelper();
-//        snapHelper.attachToRecyclerView(recyclerView);
+        PagerSnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
 
     }
 
     private List<PostDisplay> getSamplePosts() {
         List<PostDisplay> list = new ArrayList<>();
+        list.add(new PostDisplay(
+                new Post("1", Instant.now(), Instant.now(), "u2", "Ha Noi", "Beautiful day"),
+                new Media("m2", Instant.now(), Instant.now(), "2", "Image", "https://picsum.photos/601/900", 1),
+                new User("u2", Instant.now(), Instant.now(), "bob2004", "Bob", "https://picsum.photos/101", "bob@gmail.com", "Male", "05-26-2004"),
+                22, true, 7, true
+        ));
+        list.add(new PostDisplay(
+                new Post("2", Instant.now(), Instant.now(), "u2", "Ha Noi", "Beautiful day"),
+                new Media("m2", Instant.now(), Instant.now(), "2", "Image", "https://picsum.photos/601/900", 1),
+                new User("u2", Instant.now(), Instant.now(), "bob2004", "Bob", "https://picsum.photos/101", "bob@gmail.com", "Male", "05-26-2004"),
+                22, true, 7, true
+        ));
+        list.add(new PostDisplay(
+                new Post("1", Instant.now(), Instant.now(), "u2", "Ha Noi", "Beautiful day"),
+                new Media("m2", Instant.now(), Instant.now(), "2", "Image", "https://picsum.photos/601/900", 1),
+                new User("u2", Instant.now(), Instant.now(), "bob2004", "Bob", "https://picsum.photos/101", "bob@gmail.com", "Male", "05-26-2004"),
+                22, true, 7, true
+        ));
+        list.add(new PostDisplay(
+                new Post("2", Instant.now(), Instant.now(), "u2", "Ha Noi", "Beautiful day"),
+                new Media("m2", Instant.now(), Instant.now(), "2", "Image", "https://picsum.photos/601/900", 1),
+                new User("u2", Instant.now(), Instant.now(), "bob2004", "Bob", "https://picsum.photos/101", "bob@gmail.com", "Male", "05-26-2004"),
+                22, true, 7, true
+        ));
+        list.add(new PostDisplay(
+                new Post("1", Instant.now(), Instant.now(), "u2", "Ha Noi", "Beautiful day"),
+                new Media("m2", Instant.now(), Instant.now(), "2", "Image", "https://picsum.photos/601/900", 1),
+                new User("u2", Instant.now(), Instant.now(), "bob2004", "Bob", "https://picsum.photos/101", "bob@gmail.com", "Male", "05-26-2004"),
+                22, true, 7, true
+        ));
+        list.add(new PostDisplay(
+                new Post("2", Instant.now(), Instant.now(), "u2", "Ha Noi", "Beautiful day"),
+                new Media("m2", Instant.now(), Instant.now(), "2", "Image", "https://picsum.photos/601/900", 1),
+                new User("u2", Instant.now(), Instant.now(), "bob2004", "Bob", "https://picsum.photos/101", "bob@gmail.com", "Male", "05-26-2004"),
+                22, true, 7, true
+        ));
+        list.add(new PostDisplay(
+                new Post("1", Instant.now(), Instant.now(), "u2", "Ha Noi", "Beautiful day aksdj akjd kasjd kajkd jasjakjdkajdkakajd k akdjka  adak kadkaj ka akdj ak akjd   ajdka jaj ajkd kas kaj adkajakj a ka sk ajk akjajdjad ajdkjada jkdja kd"),
+                new Media("m2", Instant.now(), Instant.now(), "2", "Image", "https://picsum.photos/601/900", 1),
+                new User("u2", Instant.now(), Instant.now(), "bob2004", "Bob", "https://picsum.photos/101", "bob@gmail.com", "Male", "05-26-2004"),
+                22, true, 7, true
+        ));
+        list.add(new PostDisplay(
+                new Post("2", Instant.now(), Instant.now(), "u2", "Ha Noi", "Beautiful day"),
+                new Media("m2", Instant.now(), Instant.now(), "2", "Image", "https://picsum.photos/601/900", 1),
+                new User("u2", Instant.now(), Instant.now(), "bob2004", "Bob", "https://picsum.photos/101", "bob@gmail.com", "Male", "05-26-2004"),
+                22, true, 7, true
+        ));
         list.add(new PostDisplay(
                 new Post("1", Instant.now(), Instant.now(), "u2", "Ha Noi", "Beautiful day"),
                 new Media("m2", Instant.now(), Instant.now(), "2", "Image", "https://picsum.photos/601/900", 1),

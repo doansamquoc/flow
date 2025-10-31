@@ -48,7 +48,7 @@
     <string name="this_is_a_example_text_to_display_post_caption">This is a example text to display post caption</string>
     <string name="post_image_view">Post image</string>
     <string name="enter_text_to_search">Enter text to search</string>
-    <string name="_2_hours_ago">2 hours ago</string>
+    <string name="_2_hours_ago">2d</string>
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="_new">New</string>
@@ -59,6 +59,13 @@
     <string name="profile_screen">Profile screen</string>
     <string name="home_screen">Home screen</string>
     <string name="search_screen">Search screen</string>
-    <string name="lorem">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</string>
+    <string name="lorem">It is a long established fact.</string>
     <string name="_100">100</string>
+    <string name="send_message">Send message</string>
+    <string name="you_hello_john">You: Hello John!</string>
+    <string name="general">General</string>
+    <string name="pics">Pics</string>
+    <string name="pictures">Pictures</string>
+    <string name="submit">Submit</string>
+    <string name="post_this_moment">Post this moment</string>
 </resources>

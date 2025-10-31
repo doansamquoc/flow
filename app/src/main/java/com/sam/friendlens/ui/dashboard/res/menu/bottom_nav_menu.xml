@@ -9,17 +9,17 @@
         android:id="@+id/action_search_page"
         android:enabled="true"
         android:icon="@drawable/search_1"
-        android:title="@string/search" />
+        android:title="@string/home" />
     <item
-        android:id="@+id/action_create_feed_page"
+        android:id="@+id/action_camera_page"
         android:enabled="true"
-        android:icon="@drawable/add_1"
+        android:icon="@drawable/circle"
         android:title="@string/_new" />
     <item
-        android:id="@+id/action_activity_page"
+        android:id="@+id/action_message_page"
         android:enabled="true"
-        android:icon="@drawable/arrow_comparison"
-        android:title="@string/activity" />
+        android:icon="@drawable/comment_dots"
+        android:title="@string/profile" />
     <item
         android:id="@+id/action_profile_page"
         android:enabled="true"

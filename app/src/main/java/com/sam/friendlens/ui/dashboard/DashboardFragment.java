@@ -1,20 +1,15 @@
 package com.sam.friendlens.ui.dashboard;
 
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sam.friendlens.R;
@@ -30,6 +25,12 @@ public class DashboardFragment extends Fragment {
     private FragmentDashboardBinding binding;
     private ViewPager2 pageViewPager;
     private BottomNavigationView bottomNav;
+    private final ViewPager2.OnPageChangeCallback onPageChangedCallback = new ViewPager2.OnPageChangeCallback() {
+        @Override
+        public void onPageSelected(int position) {
+            onPageChanged(position);
+        }
+    };
 
     @Nullable
     @Override
@@ -87,10 +88,10 @@ public class DashboardFragment extends Fragment {
         } else if (id == R.id.action_search_page) {
             pageViewPager.setCurrentItem(1, true);
             return true;
-        } else if (id == R.id.action_create_feed_page) {
+        } else if (id == R.id.action_camera_page) {
             pageViewPager.setCurrentItem(2, true);
             return true;
-        } else if (id == R.id.action_activity_page) {
+        } else if (id == R.id.action_message_page) {
             pageViewPager.setCurrentItem(3, true);
             return true;
         } else if (id == R.id.action_profile_page) {
@@ -99,13 +100,6 @@ public class DashboardFragment extends Fragment {
         }
         return false;
     }
-
-    private final ViewPager2.OnPageChangeCallback onPageChangedCallback = new ViewPager2.OnPageChangeCallback() {
-        @Override
-        public void onPageSelected(int position) {
-            onPageChanged(position);
-        }
-    };
 
     private void onPageChanged(int position) {
         bottomNav.getMenu().getItem(position).setChecked(true);

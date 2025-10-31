@@ -62,7 +62,21 @@ android {
                     "src\\main\\res",
                     "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\add_new\\res",
                     "src\\main\\res",
-                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\new_feed\\res"
+                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\new_feed\\res",
+                    "src\\main\\res",
+                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\camera\\res",
+                    "src\\main\\res",
+                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\message\\res",
+                    "src\\main\\res",
+                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\photo\\res",
+                    "src\\main\\res",
+                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\setting\\res",
+                    "src\\main\\res",
+                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\friend\\res",
+                    "src\\main\\res",
+                    "src\\main\\java\\com\\sam\\friendlens\\ui\\auth\\res", "src\\main\\res", "src\\main\\java\\com\\sam\\friendlens\\ui\\auth\\login\\res",
+                    "src\\main\\res",
+                    "src\\main\\java\\com\\sam\\friendlens\\res"
                 )
             }
         }
