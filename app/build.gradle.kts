@@ -15,7 +15,6 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -23,8 +22,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -40,43 +38,18 @@ android {
             res {
                 srcDirs(
                     "src\\main\\res",
-                    "src\\main\\java\\com\\sam\\friendlens\\ui\\welcome\\res",
-                    "src\\main\\res",
-                    "src\\main\\java\\sam\\friendlens\\ui\\dashboard",
-                    "src\\main\\res",
                     "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\res",
-                    "src\\main\\res",
-                    "src\\main\\java\\sam\\com\\friendlens\\ui\\dashboard\\home\\res",
-                    "src\\main\\res",
-                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\home\\res",
-                    "src\\main\\res",
-                    "src\\main\\java\\sam\\com\\friendlens\\ui\\dashboard\\profile\\res",
-                    "src\\main\\res",
-                    "src\\main\\java\\sam\\com\\friendlens\\ui\\dashboard\\activity\\res",
-                    "src\\main\\res",
-                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\profile\\res",
-                    "src\\main\\res",
-                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\activity\\res",
-                    "src\\main\\res",
                     "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\search\\res",
-                    "src\\main\\res",
-                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\add_new\\res",
-                    "src\\main\\res",
-                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\new_feed\\res",
-                    "src\\main\\res",
                     "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\camera\\res",
-                    "src\\main\\res",
                     "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\message\\res",
-                    "src\\main\\res",
                     "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\photo\\res",
-                    "src\\main\\res",
                     "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\setting\\res",
-                    "src\\main\\res",
                     "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\friend\\res",
-                    "src\\main\\res",
-                    "src\\main\\java\\com\\sam\\friendlens\\ui\\auth\\res", "src\\main\\res", "src\\main\\java\\com\\sam\\friendlens\\ui\\auth\\login\\res",
-                    "src\\main\\res",
-                    "src\\main\\java\\com\\sam\\friendlens\\res"
+                    "src\\main\\java\\com\\sam\\friendlens\\ui\\auth\\res",
+                    "src\\main\\java\\com\\sam\\friendlens\\ui\\auth\\login\\res",
+                    "src\\main\\java\\com\\sam\\friendlens\\res",
+                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\home\\res",
+                    "src\\main\\java\\com\\sam\\friendlens\\ui\\dashboard\\profile\\res"
                 )
             }
         }
@@ -84,6 +57,7 @@ android {
 }
 
 dependencies {
+    // Core
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -99,13 +73,18 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Shimmer view effect
     implementation(libs.shimmer)
+
+    // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.google.firebase.auth)
     implementation(libs.credentials.v130)
     implementation(libs.credentials.play.services.auth.v130)
     implementation(libs.googleid.v111)
     implementation(libs.firebase.firestore)
+
     // Camera
     implementation(libs.camera.core)
     implementation(libs.camera.camera2)
@@ -114,6 +93,7 @@ dependencies {
     implementation(libs.camera.video)
     implementation(libs.guava)
 
+    // Glide - load image
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
 }
