@@ -12,6 +12,7 @@
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
     "@lucide/lab": "^0.1.2",
+    "@privy-io/react-auth": "^3.17.0",
     "@tailwindcss/vite": "^4.2.2",
     "@tanstack/react-form": "^1.28.5",
     "@tanstack/react-router": "^1.167.5",
