@@ -9,5 +9,8 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+
+    // Zod requirements
+    "strict": true
   }
 }
