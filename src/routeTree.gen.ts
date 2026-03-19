@@ -10,52 +10,98 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as LandingRouteImport } from './routes/_landing'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as LandingIndexRouteImport } from './routes/_landing/index'
+import { Route as DashboardCreateRouteImport } from './routes/dashboard/create'
+import { Route as LandingAboutRouteImport } from './routes/_landing/about'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const LandingRoute = LandingRouteImport.update({
+  id: '/_landing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => DashboardRoute,
+} as any)
+const LandingIndexRoute = LandingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LandingRoute,
+} as any)
+const DashboardCreateRoute = DashboardCreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const LandingAboutRoute = LandingAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => LandingRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/': typeof LandingIndexRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/login': typeof LoginRoute
+  '/about': typeof LandingAboutRoute
+  '/dashboard/create': typeof DashboardCreateRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/login': typeof LoginRoute
+  '/about': typeof LandingAboutRoute
+  '/dashboard/create': typeof DashboardCreateRoute
+  '/': typeof LandingIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/_landing': typeof LandingRouteWithChildren
+  '/dashboard': typeof DashboardRouteWithChildren
   '/login': typeof LoginRoute
+  '/_landing/about': typeof LandingAboutRoute
+  '/dashboard/create': typeof DashboardCreateRoute
+  '/_landing/': typeof LandingIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/login'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/login'
+    | '/about'
+    | '/dashboard/create'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/login'
-  id: '__root__' | '/' | '/about' | '/login'
+  to: '/login' | '/about' | '/dashboard/create' | '/' | '/dashboard'
+  id:
+    | '__root__'
+    | '/_landing'
+    | '/dashboard'
+    | '/login'
+    | '/_landing/about'
+    | '/dashboard/create'
+    | '/_landing/'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  LandingRoute: typeof LandingRouteWithChildren
+  DashboardRoute: typeof DashboardRouteWithChildren
   LoginRoute: typeof LoginRoute
 }
 
@@ -68,26 +114,81 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/_landing': {
+      id: '/_landing'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof LandingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_landing/': {
+      id: '/_landing/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof LandingIndexRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/dashboard/create': {
+      id: '/dashboard/create'
+      path: '/create'
+      fullPath: '/dashboard/create'
+      preLoaderRoute: typeof DashboardCreateRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_landing/about': {
+      id: '/_landing/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof LandingAboutRouteImport
+      parentRoute: typeof LandingRoute
     }
   }
 }
 
+interface LandingRouteChildren {
+  LandingAboutRoute: typeof LandingAboutRoute
+  LandingIndexRoute: typeof LandingIndexRoute
+}
+
+const LandingRouteChildren: LandingRouteChildren = {
+  LandingAboutRoute: LandingAboutRoute,
+  LandingIndexRoute: LandingIndexRoute,
+}
+
+const LandingRouteWithChildren =
+  LandingRoute._addFileChildren(LandingRouteChildren)
+
+interface DashboardRouteChildren {
+  DashboardCreateRoute: typeof DashboardCreateRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardCreateRoute: DashboardCreateRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  LandingRoute: LandingRouteWithChildren,
+  DashboardRoute: DashboardRouteWithChildren,
   LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
