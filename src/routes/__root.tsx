@@ -1,12 +1,15 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { PrivyProvider } from "@privy-io/react-auth";
-const PRIVY_APP_ID = import.meta.env.VITE_PRIVY_APP_ID;
 import { NotFoundPage } from "./not-found";
+
+const PRIVY_APP_ID = import.meta.env.VITE_PRIVY_APP_ID;
+const PRIVY_CLIENT_ID = import.meta.env.VITE_PRIVY_CLIENT_ID;
 
 export const Route = createRootRoute({
   component: () => (
     <PrivyProvider
       appId={PRIVY_APP_ID}
+      clientId={PRIVY_CLIENT_ID}
       config={{
         appearance: {
           logo: "/logo.svg",
@@ -22,10 +25,11 @@ export const Route = createRootRoute({
         embeddedWallets: {
           showWalletUIs: true,
           ethereum: {
-            createOnLogin: "off",
+            createOnLogin: "users-without-wallets",
           },
-          solana: {
-            createOnLogin: "off",
+          priceDisplay: {
+            primary: "fiat-currency",
+            secondary: "native-token",
           },
         },
         mfa: {
