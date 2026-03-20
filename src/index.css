@@ -130,3 +130,31 @@
     @apply font-sans;
   }
 }
+
+/* Custom Privy authentication modal */
+div[id^="privy-modal-content"] {
+  font-family: var(--font-sans) !important;
+}
+
+input[id^="email-input"],
+button[class^="login-method-button"],
+div[id^="privy-modal-content"],
+input[inputmode^="numeric"] {
+  border-radius: var(--radius) !important;
+}
+
+button.login-method-button {
+  border-radius: var(--radius) !important;
+}
+
+button.login-method-button div {
+  background-color: transparent !important;
+}
+
+button[aria-label^="close modal"] {
+  background-color: transparent !important;
+}
+
+div[id^="privy-content-footer-container"] {
+  display: none;
+}

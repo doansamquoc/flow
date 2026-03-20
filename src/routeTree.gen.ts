@@ -9,187 +9,206 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as LandingRouteImport } from './routes/_landing'
-import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as NotFoundRouteImport } from './routes/not-found'
+import { Route as LandingRouteRouteImport } from './routes/_landing/route'
+import { Route as GuestRouteRouteImport } from './routes/_guest/route'
+import { Route as AuthRouteRouteImport } from './routes/_auth/route'
 import { Route as LandingIndexRouteImport } from './routes/_landing/index'
-import { Route as DashboardCreateRouteImport } from './routes/dashboard/create'
-import { Route as LandingAboutRouteImport } from './routes/_landing/about'
+import { Route as GuestLoginRouteImport } from './routes/_guest/login'
+import { Route as AuthDashboardIndexRouteImport } from './routes/_auth/dashboard/index'
+import { Route as AuthDashboardCreateRouteImport } from './routes/_auth/dashboard/create'
 
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
+const NotFoundRoute = NotFoundRouteImport.update({
+  id: '/not-found',
+  path: '/not-found',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LandingRoute = LandingRouteImport.update({
+const LandingRouteRoute = LandingRouteRouteImport.update({
   id: '/_landing',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardIndexRoute = DashboardIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => DashboardRoute,
+const GuestRouteRoute = GuestRouteRouteImport.update({
+  id: '/_guest',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRouteRoute = AuthRouteRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const LandingIndexRoute = LandingIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => LandingRoute,
+  getParentRoute: () => LandingRouteRoute,
 } as any)
-const DashboardCreateRoute = DashboardCreateRouteImport.update({
-  id: '/create',
-  path: '/create',
-  getParentRoute: () => DashboardRoute,
+const GuestLoginRoute = GuestLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => GuestRouteRoute,
 } as any)
-const LandingAboutRoute = LandingAboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => LandingRoute,
+const AuthDashboardIndexRoute = AuthDashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
+  getParentRoute: () => AuthRouteRoute,
+} as any)
+const AuthDashboardCreateRoute = AuthDashboardCreateRouteImport.update({
+  id: '/dashboard/create',
+  path: '/dashboard/create',
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof LandingIndexRoute
-  '/dashboard': typeof DashboardRouteWithChildren
-  '/login': typeof LoginRoute
-  '/about': typeof LandingAboutRoute
-  '/dashboard/create': typeof DashboardCreateRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  '/not-found': typeof NotFoundRoute
+  '/login': typeof GuestLoginRoute
+  '/dashboard/create': typeof AuthDashboardCreateRoute
+  '/dashboard/': typeof AuthDashboardIndexRoute
 }
 export interface FileRoutesByTo {
-  '/login': typeof LoginRoute
-  '/about': typeof LandingAboutRoute
-  '/dashboard/create': typeof DashboardCreateRoute
   '/': typeof LandingIndexRoute
-  '/dashboard': typeof DashboardIndexRoute
+  '/not-found': typeof NotFoundRoute
+  '/login': typeof GuestLoginRoute
+  '/dashboard/create': typeof AuthDashboardCreateRoute
+  '/dashboard': typeof AuthDashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_landing': typeof LandingRouteWithChildren
-  '/dashboard': typeof DashboardRouteWithChildren
-  '/login': typeof LoginRoute
-  '/_landing/about': typeof LandingAboutRoute
-  '/dashboard/create': typeof DashboardCreateRoute
+  '/_auth': typeof AuthRouteRouteWithChildren
+  '/_guest': typeof GuestRouteRouteWithChildren
+  '/_landing': typeof LandingRouteRouteWithChildren
+  '/not-found': typeof NotFoundRoute
+  '/_guest/login': typeof GuestLoginRoute
   '/_landing/': typeof LandingIndexRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  '/_auth/dashboard/create': typeof AuthDashboardCreateRoute
+  '/_auth/dashboard/': typeof AuthDashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/dashboard'
-    | '/login'
-    | '/about'
-    | '/dashboard/create'
-    | '/dashboard/'
+  fullPaths: '/' | '/not-found' | '/login' | '/dashboard/create' | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/about' | '/dashboard/create' | '/' | '/dashboard'
+  to: '/' | '/not-found' | '/login' | '/dashboard/create' | '/dashboard'
   id:
     | '__root__'
+    | '/_auth'
+    | '/_guest'
     | '/_landing'
-    | '/dashboard'
-    | '/login'
-    | '/_landing/about'
-    | '/dashboard/create'
+    | '/not-found'
+    | '/_guest/login'
     | '/_landing/'
-    | '/dashboard/'
+    | '/_auth/dashboard/create'
+    | '/_auth/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  LandingRoute: typeof LandingRouteWithChildren
-  DashboardRoute: typeof DashboardRouteWithChildren
-  LoginRoute: typeof LoginRoute
+  AuthRouteRoute: typeof AuthRouteRouteWithChildren
+  GuestRouteRoute: typeof GuestRouteRouteWithChildren
+  LandingRouteRoute: typeof LandingRouteRouteWithChildren
+  NotFoundRoute: typeof NotFoundRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
+    '/not-found': {
+      id: '/not-found'
+      path: '/not-found'
+      fullPath: '/not-found'
+      preLoaderRoute: typeof NotFoundRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_landing': {
       id: '/_landing'
       path: ''
       fullPath: '/'
-      preLoaderRoute: typeof LandingRouteImport
+      preLoaderRoute: typeof LandingRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard/': {
-      id: '/dashboard/'
-      path: '/'
-      fullPath: '/dashboard/'
-      preLoaderRoute: typeof DashboardIndexRouteImport
-      parentRoute: typeof DashboardRoute
+    '/_guest': {
+      id: '/_guest'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof GuestRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_landing/': {
       id: '/_landing/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof LandingIndexRouteImport
-      parentRoute: typeof LandingRoute
+      parentRoute: typeof LandingRouteRoute
     }
-    '/dashboard/create': {
-      id: '/dashboard/create'
-      path: '/create'
+    '/_guest/login': {
+      id: '/_guest/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof GuestLoginRouteImport
+      parentRoute: typeof GuestRouteRoute
+    }
+    '/_auth/dashboard/': {
+      id: '/_auth/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof AuthDashboardIndexRouteImport
+      parentRoute: typeof AuthRouteRoute
+    }
+    '/_auth/dashboard/create': {
+      id: '/_auth/dashboard/create'
+      path: '/dashboard/create'
       fullPath: '/dashboard/create'
-      preLoaderRoute: typeof DashboardCreateRouteImport
-      parentRoute: typeof DashboardRoute
-    }
-    '/_landing/about': {
-      id: '/_landing/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof LandingAboutRouteImport
-      parentRoute: typeof LandingRoute
+      preLoaderRoute: typeof AuthDashboardCreateRouteImport
+      parentRoute: typeof AuthRouteRoute
     }
   }
 }
 
-interface LandingRouteChildren {
-  LandingAboutRoute: typeof LandingAboutRoute
+interface AuthRouteRouteChildren {
+  AuthDashboardCreateRoute: typeof AuthDashboardCreateRoute
+  AuthDashboardIndexRoute: typeof AuthDashboardIndexRoute
+}
+
+const AuthRouteRouteChildren: AuthRouteRouteChildren = {
+  AuthDashboardCreateRoute: AuthDashboardCreateRoute,
+  AuthDashboardIndexRoute: AuthDashboardIndexRoute,
+}
+
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
+  AuthRouteRouteChildren,
+)
+
+interface GuestRouteRouteChildren {
+  GuestLoginRoute: typeof GuestLoginRoute
+}
+
+const GuestRouteRouteChildren: GuestRouteRouteChildren = {
+  GuestLoginRoute: GuestLoginRoute,
+}
+
+const GuestRouteRouteWithChildren = GuestRouteRoute._addFileChildren(
+  GuestRouteRouteChildren,
+)
+
+interface LandingRouteRouteChildren {
   LandingIndexRoute: typeof LandingIndexRoute
 }
 
-const LandingRouteChildren: LandingRouteChildren = {
-  LandingAboutRoute: LandingAboutRoute,
+const LandingRouteRouteChildren: LandingRouteRouteChildren = {
   LandingIndexRoute: LandingIndexRoute,
 }
 
-const LandingRouteWithChildren =
-  LandingRoute._addFileChildren(LandingRouteChildren)
-
-interface DashboardRouteChildren {
-  DashboardCreateRoute: typeof DashboardCreateRoute
-  DashboardIndexRoute: typeof DashboardIndexRoute
-}
-
-const DashboardRouteChildren: DashboardRouteChildren = {
-  DashboardCreateRoute: DashboardCreateRoute,
-  DashboardIndexRoute: DashboardIndexRoute,
-}
-
-const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
-  DashboardRouteChildren,
+const LandingRouteRouteWithChildren = LandingRouteRoute._addFileChildren(
+  LandingRouteRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {
-  LandingRoute: LandingRouteWithChildren,
-  DashboardRoute: DashboardRouteWithChildren,
-  LoginRoute: LoginRoute,
+  AuthRouteRoute: AuthRouteRouteWithChildren,
+  GuestRouteRoute: GuestRouteRouteWithChildren,
+  LandingRouteRoute: LandingRouteRouteWithChildren,
+  NotFoundRoute: NotFoundRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
