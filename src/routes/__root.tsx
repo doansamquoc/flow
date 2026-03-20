@@ -1,6 +1,8 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { PrivyProvider } from "@privy-io/react-auth";
 import { NotFoundPage } from "./not-found";
+import { baseSepolia } from "viem/chains";
+import { SmartWalletsProvider } from "@privy-io/react-auth/smart-wallets";
 
 const PRIVY_APP_ID = import.meta.env.VITE_PRIVY_APP_ID;
 const PRIVY_CLIENT_ID = import.meta.env.VITE_PRIVY_CLIENT_ID;
@@ -11,6 +13,7 @@ export const Route = createRootRoute({
       appId={PRIVY_APP_ID}
       clientId={PRIVY_CLIENT_ID}
       config={{
+        supportedChains: [baseSepolia],
         appearance: {
           logo: "/logo.svg",
           theme: "light",
@@ -23,7 +26,6 @@ export const Route = createRootRoute({
           },
         },
         embeddedWallets: {
-          showWalletUIs: true,
           ethereum: {
             createOnLogin: "users-without-wallets",
           },
@@ -37,7 +39,9 @@ export const Route = createRootRoute({
         },
       }}
     >
-      <Outlet />
+      <SmartWalletsProvider>
+        <Outlet />
+      </SmartWalletsProvider>
     </PrivyProvider>
   ),
   notFoundComponent: () => <NotFoundPage />,

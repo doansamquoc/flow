@@ -1,6 +1,6 @@
 import { Spinner } from "@/components/ui/spinner";
 import { usePrivy } from "@privy-io/react-auth";
-import { createFileRoute, Outlet, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Navigate, Outlet } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_auth")({
   component: AuthGuard,
@@ -8,7 +8,6 @@ export const Route = createFileRoute("/_auth")({
 
 function AuthGuard() {
   const { authenticated, ready } = usePrivy();
-  const navigate = useNavigate();
 
   if (!ready) {
     return (
@@ -18,7 +17,9 @@ function AuthGuard() {
     );
   }
 
-  if (!authenticated) return navigate({ to: "/login" });
+  if (!authenticated) {
+    return <Navigate to='/login' />;
+  }
 
   return <Outlet />;
 }

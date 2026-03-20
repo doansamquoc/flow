@@ -3,7 +3,11 @@ import "./index.css";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import React from "react";
+import { Buffer } from "buffer";
 
+if (typeof window !== "undefined") {
+  window.Buffer = Buffer;
+}
 const router = createRouter({ routeTree });
 
 declare module "@tanstack/react-router" {

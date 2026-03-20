@@ -1,6 +1,12 @@
 import { Spinner } from "@/components/ui/spinner";
 import { usePrivy } from "@privy-io/react-auth";
-import { createFileRoute, Outlet, useNavigate } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  Navigate,
+  Outlet,
+  useNavigate,
+} from "@tanstack/react-router";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/_guest")({
   component: GuestGuard,
@@ -8,7 +14,6 @@ export const Route = createFileRoute("/_guest")({
 
 function GuestGuard() {
   const { authenticated, ready } = usePrivy();
-  const navigate = useNavigate();
 
   if (!ready) {
     return (
@@ -17,7 +22,10 @@ function GuestGuard() {
       </div>
     );
   }
-  if (authenticated) return navigate({ to: "/dashboard" });
+
+  if (authenticated) {
+    return <Navigate to='/dashboard' />;
+  }
 
   return <Outlet />;
 }
