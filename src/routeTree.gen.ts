@@ -17,6 +17,7 @@ import { Route as AuthRouteRouteImport } from './routes/_auth/route'
 import { Route as LandingIndexRouteImport } from './routes/_landing/index'
 import { Route as GuestLoginRouteImport } from './routes/_guest/login'
 import { Route as AuthDashboardIndexRouteImport } from './routes/_auth/dashboard/index'
+import { Route as AuthDashboardSettingRouteImport } from './routes/_auth/dashboard/setting'
 import { Route as AuthDashboardCreateRouteImport } from './routes/_auth/dashboard/create'
 
 const NotFoundRoute = NotFoundRouteImport.update({
@@ -56,6 +57,11 @@ const AuthDashboardIndexRoute = AuthDashboardIndexRouteImport.update({
   path: '/dashboard/',
   getParentRoute: () => AuthRouteRoute,
 } as any)
+const AuthDashboardSettingRoute = AuthDashboardSettingRouteImport.update({
+  id: '/dashboard/setting',
+  path: '/dashboard/setting',
+  getParentRoute: () => AuthRouteRoute,
+} as any)
 const AuthDashboardCreateRoute = AuthDashboardCreateRouteImport.update({
   id: '/dashboard/create',
   path: '/dashboard/create',
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/not-found': typeof NotFoundRoute
   '/login': typeof GuestLoginRoute
   '/dashboard/create': typeof AuthDashboardCreateRoute
+  '/dashboard/setting': typeof AuthDashboardSettingRoute
   '/dashboard/': typeof AuthDashboardIndexRoute
 }
 export interface FileRoutesByTo {
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/not-found': typeof NotFoundRoute
   '/login': typeof GuestLoginRoute
   '/dashboard/create': typeof AuthDashboardCreateRoute
+  '/dashboard/setting': typeof AuthDashboardSettingRoute
   '/dashboard': typeof AuthDashboardIndexRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/_guest/login': typeof GuestLoginRoute
   '/_landing/': typeof LandingIndexRoute
   '/_auth/dashboard/create': typeof AuthDashboardCreateRoute
+  '/_auth/dashboard/setting': typeof AuthDashboardSettingRoute
   '/_auth/dashboard/': typeof AuthDashboardIndexRoute
 }
 export interface FileRouteTypes {
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/not-found'
     | '/login'
     | '/dashboard/create'
+    | '/dashboard/setting'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/not-found'
     | '/login'
     | '/dashboard/create'
+    | '/dashboard/setting'
     | '/dashboard'
   id:
     | '__root__'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/_guest/login'
     | '/_landing/'
     | '/_auth/dashboard/create'
+    | '/_auth/dashboard/setting'
     | '/_auth/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -186,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthDashboardIndexRouteImport
       parentRoute: typeof AuthRouteRoute
     }
+    '/_auth/dashboard/setting': {
+      id: '/_auth/dashboard/setting'
+      path: '/dashboard/setting'
+      fullPath: '/dashboard/setting'
+      preLoaderRoute: typeof AuthDashboardSettingRouteImport
+      parentRoute: typeof AuthRouteRoute
+    }
     '/_auth/dashboard/create': {
       id: '/_auth/dashboard/create'
       path: '/dashboard/create'
@@ -198,11 +217,13 @@ declare module '@tanstack/react-router' {
 
 interface AuthRouteRouteChildren {
   AuthDashboardCreateRoute: typeof AuthDashboardCreateRoute
+  AuthDashboardSettingRoute: typeof AuthDashboardSettingRoute
   AuthDashboardIndexRoute: typeof AuthDashboardIndexRoute
 }
 
 const AuthRouteRouteChildren: AuthRouteRouteChildren = {
   AuthDashboardCreateRoute: AuthDashboardCreateRoute,
+  AuthDashboardSettingRoute: AuthDashboardSettingRoute,
   AuthDashboardIndexRoute: AuthDashboardIndexRoute,
 }
 

@@ -10,7 +10,7 @@ export const useMagicOAuth = () => {
     try {
       await magic.oauth2.loginWithRedirect({
         provider: "google",
-        redirectURI: `${window.location.origin}/callback`,
+        redirectURI: `https://auth.magic.link/v1/oauth2/pUdp6ty-ZWxFTwxBLwjfo7PQ5FjEcmiZd8VF5xRPCQg=/callback`,
       });
     } catch (error) {
       console.error("OAuth error:", error);

@@ -1,12 +1,11 @@
-import { waveCircle } from "@lucide/lab";
-import { Icon } from "lucide-react";
+import { Aionlabs } from "@thesvg/react";
 
 interface LogoProps {
-  size: number;
+  size?: "24";
 }
 
-const Logo = ({ size = 24 }: LogoProps) => {
-  return <Icon iconNode={waveCircle} size={size} />;
+const Logo = ({ size = "24" }: LogoProps) => {
+  return <Aionlabs className='size-8' />;
 };
 
 export default Logo;
