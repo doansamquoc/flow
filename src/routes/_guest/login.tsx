@@ -1,6 +1,6 @@
-import LoginForm from "@/features/auth/components/login-form";
-import Logo from "@/components/logo";
+import { LoginForm } from "@/features/auth/components/login-form";
 import { createFileRoute } from "@tanstack/react-router";
+import { Aionlabs } from "@thesvg/react";
 
 export const Route = createFileRoute("/_guest/login")({
   component: RouteComponent,
@@ -10,7 +10,7 @@ function RouteComponent() {
   return (
     <div className='min-h-screen mx-auto max-w-md flex flex-col justify-center items-center px-4'>
       <div className='mb-4'>
-        <Logo size={48} />
+        <Aionlabs className='size-24' />
       </div>
       <h1 className='text-center text-lg uppercase mb-6'>
         Chào mừng đến với <span className='font-semibold'>Flow!</span>

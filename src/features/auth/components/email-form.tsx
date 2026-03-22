@@ -8,15 +8,15 @@ import {
 } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Spinner } from "@/components/ui/spinner";
 import { ArrowRight } from "lucide-react";
+import { Spinner } from "@/components/ui/spinner";
 
 interface EmailFormProps {
-  onSubmit(email: string): Promise<void>;
   loading: boolean;
+  onSubmit(email: string): Promise<void>;
 }
 
-const EmailForm = ({ onSubmit, loading }: EmailFormProps) => {
+const EmailForm = ({ loading, onSubmit }: EmailFormProps) => {
   const form = useForm({
     defaultValues: {
       email: "",
@@ -62,7 +62,7 @@ const EmailForm = ({ onSubmit, loading }: EmailFormProps) => {
             );
           }}
         />
-        <Button className='w-full' size={"lg"} disabled={loading}>
+        <Button className='w-full' size={"lg"}>
           {loading ? (
             <Spinner />
           ) : (

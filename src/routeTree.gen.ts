@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as NotFoundRouteImport } from './routes/not-found'
+import { Route as CallbackRouteImport } from './routes/callback'
 import { Route as LandingRouteRouteImport } from './routes/_landing/route'
 import { Route as GuestRouteRouteImport } from './routes/_guest/route'
 import { Route as AuthRouteRouteImport } from './routes/_auth/route'
@@ -21,6 +22,11 @@ import { Route as AuthDashboardCreateRouteImport } from './routes/_auth/dashboar
 const NotFoundRoute = NotFoundRouteImport.update({
   id: '/not-found',
   path: '/not-found',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CallbackRoute = CallbackRouteImport.update({
+  id: '/callback',
+  path: '/callback',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LandingRouteRoute = LandingRouteRouteImport.update({
@@ -58,6 +64,7 @@ const AuthDashboardCreateRoute = AuthDashboardCreateRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof LandingIndexRoute
+  '/callback': typeof CallbackRoute
   '/not-found': typeof NotFoundRoute
   '/login': typeof GuestLoginRoute
   '/dashboard/create': typeof AuthDashboardCreateRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof LandingIndexRoute
+  '/callback': typeof CallbackRoute
   '/not-found': typeof NotFoundRoute
   '/login': typeof GuestLoginRoute
   '/dashboard/create': typeof AuthDashboardCreateRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   '/_auth': typeof AuthRouteRouteWithChildren
   '/_guest': typeof GuestRouteRouteWithChildren
   '/_landing': typeof LandingRouteRouteWithChildren
+  '/callback': typeof CallbackRoute
   '/not-found': typeof NotFoundRoute
   '/_guest/login': typeof GuestLoginRoute
   '/_landing/': typeof LandingIndexRoute
@@ -83,14 +92,27 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/not-found' | '/login' | '/dashboard/create' | '/dashboard/'
+  fullPaths:
+    | '/'
+    | '/callback'
+    | '/not-found'
+    | '/login'
+    | '/dashboard/create'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/not-found' | '/login' | '/dashboard/create' | '/dashboard'
+  to:
+    | '/'
+    | '/callback'
+    | '/not-found'
+    | '/login'
+    | '/dashboard/create'
+    | '/dashboard'
   id:
     | '__root__'
     | '/_auth'
     | '/_guest'
     | '/_landing'
+    | '/callback'
     | '/not-found'
     | '/_guest/login'
     | '/_landing/'
@@ -102,6 +124,7 @@ export interface RootRouteChildren {
   AuthRouteRoute: typeof AuthRouteRouteWithChildren
   GuestRouteRoute: typeof GuestRouteRouteWithChildren
   LandingRouteRoute: typeof LandingRouteRouteWithChildren
+  CallbackRoute: typeof CallbackRoute
   NotFoundRoute: typeof NotFoundRoute
 }
 
@@ -112,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/not-found'
       fullPath: '/not-found'
       preLoaderRoute: typeof NotFoundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/callback': {
+      id: '/callback'
+      path: '/callback'
+      fullPath: '/callback'
+      preLoaderRoute: typeof CallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_landing': {
@@ -208,6 +238,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRouteRoute: AuthRouteRouteWithChildren,
   GuestRouteRoute: GuestRouteRouteWithChildren,
   LandingRouteRoute: LandingRouteRouteWithChildren,
+  CallbackRoute: CallbackRoute,
   NotFoundRoute: NotFoundRoute,
 }
 export const routeTree = rootRouteImport
